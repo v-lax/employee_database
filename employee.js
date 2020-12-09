@@ -276,3 +276,135 @@ function viewEmployeesByMananger(){
         init()
     })
 }
+
+function updateManagers(){
+    connection.query('SELECT * from employee',function(err,employees){
+        inq.prompt([
+            {
+                name: 'employee_name',
+                type: 'rawlist',
+                message: 'Which employee do you need to update the manager for?',
+                choices: function () {
+                    var choiceArray = [];
+                    for (let i = 0; i < employees.length; i++) {
+                        // I worked on this with my instructor :) 
+                        choiceArray.push(
+                            {
+                                name: employees[i].first_name + " " + employees[i].last_name,
+                                value: employees[i].id
+                            }
+                        )
+                    }
+                    return choiceArray;
+                }
+            },
+            {
+                name:'manager_id',
+                type:'rawlist',
+                message:"Who is this employee's new manager?",
+                choices: function(){
+                    var managerArray = [];
+                        for (let i = 0; i < employees.length; i++) {
+                            // I worked on this with my instructor :) 
+                            managerArray.push(
+                                {
+                                    name: employees[i].first_name + " " + employees[i].last_name,
+                                    value: employees[i].id
+                                }
+                            )
+                        }
+                    return managerArray;
+                }
+            }
+        ]).then(function(answer){
+            connection.query(
+            "UPDATE employee SET ? WHERE ?",
+        [
+            {
+              manager_id: answer.manager_id,
+            },
+            {
+              id:answer.employee_name
+            }
+        ],
+            function(err) {
+              if (err) throw err;
+              console.log("You have successfully added updated the manager for this employee!");
+              init();
+            })
+        })
+    })
+}
+
+function updateRoles(){
+    connection.query('SELECT * FROM employee', function (err, employees) {
+        if (err) throw err;
+        connection.query('SELECT * FROM role', function (err, roles) {
+            if (err) throw err;
+            inq.prompt([
+                {
+                    name: 'employee_name',
+                    type: 'rawlist',
+                    message: 'Which employee do you need to update a role for?',
+                    choices: function () {
+                        var choiceArray = [];
+                        for (let i = 0; i < employees.length; i++) {
+                            // I worked on this with my instructor :) 
+                            choiceArray.push(
+                                {
+                                    name: employees[i].first_name + " " + employees[i].last_name,
+                                    value: employees[i].id
+                                }
+                            )
+                        }
+                        return choiceArray;
+                    }
+                },
+                {
+                    name: 'roleType',
+                    type: 'rawlist',
+                    message: 'What is the new role for this employee?',
+                    choices: function(){
+                        var roleArray = []
+                        for (let i=0;i<roles.length;i++){
+                            roleArray.push({
+                                name:roles[i].title,
+                                value:roles[i].id
+                            })
+                        }
+                        return roleArray
+                    }
+                },
+            ]).then(function(answer){
+                connection.query(
+                    "UPDATE employee SET ? WHERE ?",
+                    [
+                      {
+                        role_id: answer.roleType
+                      },
+                      {
+                        id:answer.employee_name 
+                      }
+                    ],
+                    function(err, res) {
+                      if (err) throw err;
+                      console.log("You have successfully updated this employee's role!");
+                      init();
+                    }
+                  )
+            })
+        })
+    })
+}
+
+function deleteDepartment(){
+
+}
+
+function deleteEmployee(){
+
+}
+
+function deleteRole(){
+
+}
