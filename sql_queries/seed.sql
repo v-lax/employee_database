@@ -53,46 +53,46 @@ VALUES('CEO',200000,6);
 
 /* Inserting Values into the Employee table */
 INSERT INTO employee(first_name,last_name,role_id,manager_id)
-VALUES ('Lebron',"James",1,2);
+VALUES ('Lebron',"James",1,3);
 
 INSERT INTO employee(first_name,last_name,role_id,manager_id)
-VALUES ('Kobe',"Bryant",1,2);
+VALUES ('Kobe',"Bryant",1,3);
 
 INSERT INTO employee(first_name,last_name,role_id,manager_id)
-VALUES ('Dwayne',"Wade",2,3);
+VALUES ('Dwayne',"Wade",2,4);
 
 INSERT INTO employee(first_name,last_name,role_id,manager_id)
 VALUES ('Tim',"Duncan",3,null);
 
 INSERT INTO employee(first_name,last_name,role_id,manager_id)
-VALUES ('Magic',"Johnson",4,7);
+VALUES ('Magic',"Johnson",4,8);
 
 INSERT INTO employee(first_name,last_name,role_id,manager_id)
-VALUES ('Michael',"Jordan",5,4);
+VALUES ('Michael',"Jordan",5,5);
 
 INSERT INTO employee(first_name,last_name,role_id,manager_id)
-VALUES ('Kareem',"Abdul-Jabar",5,4);
+VALUES ('Kareem',"Abdul-Jabar",5,5);
 
 INSERT INTO employee(first_name,last_name,role_id,manager_id)
 VALUES ('Allen',"Iverson",7,null);
 
 INSERT INTO employee(first_name,last_name,role_id,manager_id)
-VALUES ('Steve',"Nash",6,7);
+VALUES ('Steve',"Nash",6,5);
 
 INSERT INTO employee(first_name,last_name,role_id,manager_id)
-VALUES ('Carmelo',"Anthony",8,9);
+VALUES ('Carmelo',"Anthony",8,11);
 
 INSERT INTO employee(first_name,last_name,role_id,manager_id)
-VALUES ('Patrick',"Ewing",9,3);
+VALUES ('Patrick',"Ewing",9,4);
 
 INSERT INTO employee(first_name,last_name,role_id,manager_id)
-VALUES ('Larry',"Bird",10,3);
+VALUES ('Larry',"Bird",10,4);
 
 INSERT INTO employee(first_name,last_name,role_id,manager_id)
-VALUES ('Carl',"Malone",1,2);
+VALUES ('Carl',"Malone",1,3);
 
 INSERT INTO employee(first_name,last_name,role_id,manager_id)
-VALUES ('Manu',"Ginobli",8,9);
+VALUES ('Manu',"Ginobli",8,11);
 
 INSERT INTO employee(first_name,last_name,role_id,manager_id)
-VALUES ('Shaquille',"Oneal",1,2);
+VALUES ('Shaquille',"Oneal",1,3);
