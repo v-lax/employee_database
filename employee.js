@@ -242,3 +242,37 @@ function addRole(){
         })
     })
 }
+
+function viewDepartment(){
+    connection.query("SELECT * FROM department",function(err,res){
+        if(err) throw err;
+        console.table(res)
+        init()
+    })
+}
+
+function viewEmployees(){
+    connection.query("SELECT * FROM employee",function(err,res){
+        if(err) throw err;
+        console.table(res)
+        init()
+    })
+}
+
+function viewRoles(){
+    connection.query("SELECT * FROM role",function(err,res){
+        if(err) throw err;
+        console.table(res)
+        init()
+    })
+}
+
+function viewEmployeesByMananger(){
+    connection.query(
+        "SELECT E.first_name as Employee, M.first_name as Manager FROM employee E INNER JOIN employee M WHERE E.manager_id = M.id",
+        function(err,res){
+        if(err) throw err;
+        console.table(res)
+        init()
+    })
+}
