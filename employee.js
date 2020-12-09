@@ -19,7 +19,7 @@ function init(){
         name:'action',
         type:'list',
         message:'What would you like to do?',
-        choices:['Add','View','Update','Exit']
+        choices:['Add','View','Update','Delete','Exit']
     }).then(function(response){
         if(response.action==='Add'){
             addValue();
@@ -27,7 +27,10 @@ function init(){
             viewValue();
         }else if(response.action==='Update'){
             updateValue();
-        }else{
+        }else if(response.action==='Delete'){
+            deleteValue();
+        }
+        else{
             connection.end();
         }
     })
@@ -80,6 +83,23 @@ function updateValue(){
             updateRoles()
         }else if(response.updateType==='Update employee managers'){
             updateManagers()
+        }
+    })
+}
+
+function deleteValue(){
+    inq.prompt({
+        name:'deleteType',
+        type:'list',
+        message:'What would you like to delete?',
+        choices:['Delete employee','Delete department','Delete role']
+    }).then(function(response){
+        if(response.deleteType==='Delete employee'){
+            deleteEmployee()
+        }else if(response.deleteType==='Delete department'){
+            deleteDepartment();
+        }else if(response.deleteType==='Delete role'){
+            deleteRole();
         }
     })
 }
