@@ -398,13 +398,99 @@ function updateRoles(){
 }
 
 function deleteDepartment(){
-
+    connection.query('SELECT * from department',function(err,departments){
+        inq.prompt(
+            {
+                name:'department_name',
+                type:'rawlist',
+                message:"Which department would you like to delete?",
+                choices:function(){
+                    var departmentArray = [];
+                        for (let i = 0; i < departments.length; i++) {
+                            // I worked on this with my instructor :) 
+                            departmentArray.push(departments[i].department_name)
+                        }
+                        return departmentArray;
+                }
+            }
+        ).then(function(answer){
+            connection.query(
+            "DELETE FROM department WHERE ?",
+            {
+              department_name: answer.department_name,
+            },
+            function(err) {
+              if (err) throw err;
+              console.log("You have successfully deleted a department!");
+              init();
+            })
+        })
+    })
 }
 
 function deleteEmployee(){
-
+    connection.query('SELECT * from employee',function(err,employees){
+        inq.prompt(
+            {
+                name:'employee_name',
+                type:'rawlist',
+                message:"Which employee would you like to delete?",
+                choices:function(){
+                    var employeeArray = [];
+                        for (let i = 0; i < employees.length; i++) {
+                            // I worked on this with my instructor :) 
+                            employeeArray.push(
+                                {
+                                    name: employees[i].first_name + " " + employees[i].last_name,
+                                    value: employees[i].id
+                                }
+                            )
+                        }
+                        return employeeArray;
+                }
+            }
+        ).then(function(answer){
+            connection.query(
+            "DELETE FROM employee WHERE ?",
+            {
+              id: answer.employee_name,
+            },
+            function(err) {
+              if (err) throw err;
+              console.log("You have successfully deleted an employee!");
+              init();
+            })
+        })
+    })
 }
 
 function deleteRole(){
-
+    connection.query('SELECT * from role',function(err,roles){
+        inq.prompt(
+            {
+                name:'role_name',
+                type:'rawlist',
+                message:"Which role would you like to delete?",
+                choices:function(){
+                    var roleArray = [];
+                        for (let i = 0; i < roles.length; i++) {
+                            // I worked on this with my instructor :) 
+                            roleArray.push(roles[i].title)
+                        }
+                        return roleArray;
+                }
+            }
+        ).then(function(answer){
+            connection.query(
+            "DELETE FROM role WHERE ?",
+            {
+              title: answer.role_name,
+            },
+            function(err) {
+              if (err) throw err;
+              console.log("You have successfully deleted a role!");
+              init();
+            })
+        })
+    })
 }
